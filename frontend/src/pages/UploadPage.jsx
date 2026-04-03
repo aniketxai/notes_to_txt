@@ -11,6 +11,7 @@ import { useApp } from '../context/AppContext';
 const UploadPage = () => {
   const navigate = useNavigate();
   const { addToHistory } = useApp();
+  const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
   const [isDragging, setIsDragging] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -64,7 +65,7 @@ const UploadPage = () => {
     formData.append("image", selectedFile);
 
     try {
-      const res = await axios.post("http://localhost:5000/upload", formData, {
+      const res = await axios.post(`${apiBaseUrl}/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

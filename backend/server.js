@@ -4,9 +4,11 @@ const cors = require("cors");
 const { exec } = require("child_process");
 const path = require("path");
 const fs = require("fs");
+require("dotenv").config();
 
 const app = express();
-app.use(cors());
+const allowedOrigin = process.env.FRONTEND_ORIGIN || "http://localhost:5173";
+app.use(cors({ origin: allowedOrigin }));
 
 const uploadsDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsDir)) {
@@ -48,4 +50,6 @@ app.post("/upload", upload.single("image"), (req, res) => {
   });
 });
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
