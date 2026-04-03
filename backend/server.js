@@ -3,21 +3,33 @@ const multer = require("multer");
 const cors = require("cors");
 const { exec } = require("child_process");
 const path = require("path");
+const fs = require("fs");
 
 const app = express();
 app.use(cors());
 
-const upload = multer({ dest: "uploads/" });
+const uploadsDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
+const upload = multer({ dest: uploadsDir });
+const ocrScriptPath = path.join(__dirname, "ocr.py");
 
 app.post("/upload", upload.single("image"), (req, res) => {
-  const imagePath = req.file.path;
+  if (!req.file) {
+    return res.status(400).json({ error: "No image file received. Use form field 'image'." });
+  }
 
-  exec(`python3 /Users/aniketxai/Desktop/notes_to_txt/python/ocr.py "${imagePath}"`, 
+  const imagePath = path.resolve(req.file.path);
+
+  exec(`python3 "${ocrScriptPath}" "${imagePath}"`, { maxBuffer: 10 * 1024 * 1024 },
   (error, stdout, stderr) => {
     
     if (error) {
-      console.error(stderr);
-      return res.status(500).send("Error processing image");
+      const details = (stderr || error.message || "Unknown OCR error").trim();
+      console.error("OCR error:", details);
+      return res.status(500).json({ error: "Error processing image", details });
     }
 
     res.json({ text: stdout });
