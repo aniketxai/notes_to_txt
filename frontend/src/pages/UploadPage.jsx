@@ -69,6 +69,9 @@ const UploadPage = () => {
       });
 
       const extractedText = res.data.text;
+      const confidence = typeof res.data.confidence === 'number'
+        ? Number(res.data.confidence.toFixed(2))
+        : 0;
 
       // 🔥 Basic smart summary
       const summary = extractedText
@@ -86,7 +89,7 @@ const UploadPage = () => {
         imagePreview: preview,
         extractedText,
         summary,
-        confidence: 95,
+        confidence,
         wordCount,
         readabilityScore: 8.0,
         keywords: extractedText.split(/\s+/).slice(0, 5),

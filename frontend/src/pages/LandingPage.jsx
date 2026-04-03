@@ -100,8 +100,8 @@ const LandingPage = () => {
 
             <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
               {[
-                { value: '99.9%', label: 'Accuracy' },
-                { value: '<2s', label: 'Processing' },
+                { value: '89.87%', label: 'Accuracy' },
+                { value: '<5s', label: 'Processing' },
                 { value: '50+', label: 'Languages' },
                 { value: '∞', label: 'Usage' },
               ].map((stat, index) => (
@@ -152,7 +152,7 @@ const LandingPage = () => {
                   </Card>
                   {index < steps.length - 1 && (
                     <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                      <ArrowRight className="w-8 h-8 text-primary-400" />
+                      
                     </div>
                   )}
                 </div>

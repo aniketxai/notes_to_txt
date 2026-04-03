@@ -32,7 +32,19 @@ app.post("/upload", upload.single("image"), (req, res) => {
       return res.status(500).json({ error: "Error processing image", details });
     }
 
-    res.json({ text: stdout });
+    const output = (stdout || "").trim();
+    const jsonMatch = output.match(/\{[\s\S]*\}/);
+    const candidate = jsonMatch ? jsonMatch[0] : output;
+
+    try {
+      const parsed = JSON.parse(candidate);
+      return res.json({
+        text: parsed.text || "",
+        confidence: Number.isFinite(parsed.confidence) ? parsed.confidence : 0,
+      });
+    } catch {
+      return res.json({ text: output, confidence: 0 });
+    }
   });
 });
 

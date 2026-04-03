@@ -15,6 +15,11 @@ const ResultPage = () => {
   const [editedText, setEditedText] = useState(currentNote?.extractedText || '');
   const [toast, setToast] = useState(null);
 
+  const confidenceValue = Number.isFinite(Number(currentNote?.confidence))
+    ? Math.max(0, Math.min(100, Number(currentNote.confidence)))
+    : 0;
+  const confidenceDisplay = confidenceValue.toFixed(1);
+
   if (!currentNote) {
     navigate('/upload');
     return null;
@@ -198,7 +203,7 @@ const ResultPage = () => {
               <Card glass>
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white mb-4">
-                    <span className="text-3xl font-bold">{currentNote.confidence}%</span>
+                    <span className="text-xl sm:text-2xl font-bold leading-none">{confidenceDisplay}%</span>
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
                     Confidence Score
@@ -211,7 +216,7 @@ const ResultPage = () => {
                 <div className="relative h-3 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
                   <div
                     className="absolute inset-y-0 left-0 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full transition-all duration-1000"
-                    style={{ width: `${currentNote.confidence}%` }}
+                    style={{ width: `${confidenceValue}%` }}
                   />
                 </div>
               </Card>
