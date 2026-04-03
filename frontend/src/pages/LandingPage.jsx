@@ -72,7 +72,7 @@ const LandingPage = () => {
           <div className="max-w-6xl mx-auto text-center">
             <div className="inline-block mb-6 px-6 py-2 glass-card">
               <span className="text-sm font-semibold gradient-text">
-                Powered by Advanced AI
+                Powered by MethXai
               </span>
             </div>
 
@@ -84,7 +84,7 @@ const LandingPage = () => {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-5 duration-1000" style={{ animationDelay: '200ms' }}>
-              Convert handwritten notes to digital text instantly with AI-powered OCR, smart summaries, and powerful search capabilities.
+             Convert handwritten notes into structured, searchable, and summarized digital content.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-in fade-in slide-in-from-bottom-6 duration-1000" style={{ animationDelay: '400ms' }}>
@@ -93,16 +93,9 @@ const LandingPage = () => {
                 icon={<Upload className="w-5 h-5" />}
                 onClick={() => navigate('/upload')}
               >
-                Upload Notes Now
+                Upload Your Notes
               </Button>
-              <Button
-                size="lg"
-                variant="glass"
-                icon={<Sparkles className="w-5 h-5" />}
-                onClick={() => navigate('/demo')}
-              >
-                Try Demo Mode
-              </Button>
+              
             </div>
 
             <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
@@ -125,40 +118,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <section className="py-20 px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                Powerful Features
-              </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                Everything you need to digitize and organize your handwritten notes
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {features.map((feature, index) => (
-                <Card
-                  key={index}
-                  hover
-                  glass
-                  className="group animate-in fade-in slide-in-from-bottom duration-700"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${feature.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+       
 
         <section className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
@@ -167,7 +127,7 @@ const LandingPage = () => {
                 How It Works
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-400">
-                Three simple steps to digital notes
+                Three Simple Steps 
               </p>
             </div>
 
@@ -188,9 +148,7 @@ const LandingPage = () => {
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                       {step.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {step.description}
-                    </p>
+                    
                   </Card>
                   {index < steps.length - 1 && (
                     <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
@@ -207,7 +165,7 @@ const LandingPage = () => {
                 onClick={() => navigate('/upload')}
                 icon={<Upload className="w-5 h-5" />}
               >
-                Get Started Now
+               Let's Get Started
               </Button>
             </div>
           </div>
@@ -217,14 +175,14 @@ const LandingPage = () => {
           <div className="max-w-7xl mx-auto text-center">
             <div className="mb-6">
               <h3 className="text-2xl font-bold gradient-text mb-2">
-                Smart Notes Converter
+                MethXai
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Transform handwriting into digital text with AI
+                Transform Your Handwritten Notes
               </p>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-500">
-              © 2024 Smart Notes Converter. Built with React & Tailwind CSS
+              © 2026 MethXai. Built with love by team methxai. All rights reserved.
             </p>
           </div>
         </footer>
