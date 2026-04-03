@@ -8,10 +8,19 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      
-    </>
-  )
+   <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/upload" element={<UploadPage />} />
+          <Route path="/processing" element={<ProcessingPage />} />
+          <Route path="/result" element={<ResultPage />} />
+          <Route path="/demo" element={<DemoPage />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
+  );
+  
 }
 
 export default App
