@@ -1,14 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import UploadPage from './pages/UploadPage';
+import ProcessingPage from './pages/ProcessingPage';
+import ResultPage from './pages/ResultPage';
+import DemoPage from './pages/DemoPage';
+import HistorySidebar from './components/HistorySidebar';
+import FloatingUploadButton from './components/FloatingUploadButton';
 
-function App() {
-  const [count, setCount] = useState(0)
+const Layout = ({ children }) => {
+  const location = useLocation();
+  const showFloatingButton = location.pathname === '/' || location.pathname === '/result';
 
   return (
-   <BrowserRouter>
+    <>
+      <HistorySidebar />
+      {children}
+      {showFloatingButton && <FloatingUploadButton />}
+    </>
+  );
+};
+
+function App() {
+  return (
+    <BrowserRouter>
       <Layout>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -20,7 +34,6 @@ function App() {
       </Layout>
     </BrowserRouter>
   );
-  
 }
 
-export default App
+export default App;
